@@ -79,4 +79,13 @@ public class SmartDoorLockTest {
         );
     }
 
+    @Test
+    public void blockAfterTooManyUnsuccessfulAttempts() {
+        setPinAndLock();
+        for (int i = 0; i < this.doorLock.getMaxAttempts(); i++) {
+            this.doorLock.unlock(WRONG_PIN);
+        }
+        assertTrue(this.doorLock.isBlocked());
+    }
+
 }
