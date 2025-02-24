@@ -25,4 +25,11 @@ public class SmartDoorLockTest {
         assertThrows(IllegalStateException.class, () -> this.doorLock.lock());
     }
 
+    @Test
+    public void setPinAndTryToLock() {
+        this.doorLock.setPin(0000);
+        this.doorLock.lock();
+        assertTrue(this.doorLock.isLocked());
+    }
+
 }

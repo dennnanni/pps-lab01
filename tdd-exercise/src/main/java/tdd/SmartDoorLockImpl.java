@@ -8,7 +8,8 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void setPin(int pin) {
-
+        this.pin = pin;
+        pinSet = true;
     }
 
     @Override
