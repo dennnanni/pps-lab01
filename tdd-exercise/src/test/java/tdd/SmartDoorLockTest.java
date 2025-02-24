@@ -2,6 +2,8 @@ package tdd;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,11 +63,14 @@ public class SmartDoorLockTest {
         assertTrue(this.doorLock.isLocked());
     }
 
-    @Test
-    public void checkFailedAttemptsCounterValue() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 4})
+    public void checkFailedAttemptsCounterValue(int attempts) {
         setPinAndLock();
-        this.doorLock.unlock(WRONG_PIN);
-        assertEquals(1, this.doorLock.getFailedAttempts());
+        for (int i = 0; i < attempts; i++) {
+            this.doorLock.unlock(WRONG_PIN);
+        }
+        assertEquals(attempts, this.doorLock.getFailedAttempts());
     }
 
     @Test
