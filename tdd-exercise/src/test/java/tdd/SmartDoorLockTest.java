@@ -100,4 +100,17 @@ public class SmartDoorLockTest {
         assertTrue(this.doorLock.isLocked());
     }
 
+    @Test
+    public void resetToInitialState() {
+        setPinAndLock();
+        block();
+        this.doorLock.reset();
+        assertAll(
+                () -> assertFalse(this.doorLock.isLocked()),
+                () -> assertEquals(0, this.doorLock.getFailedAttempts()),
+                () -> assertFalse(this.doorLock.isBlocked()),
+                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.lock())
+        );
+    }
+
 }
