@@ -10,6 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SimpleBankAccountTest {
 
+    public static final int DEFAULT_DEPOSIT_AMOUNT = 100;
+    public static final int DEFAULT_WITHDRAW_AMOUNT = 70;
+    public static final int NEW_DEPOSIT_AMOUNT = 50;
+    public static final int EXPECTED_AMOUNT = 30;
+    public static final int INITIAL_BALANCE = 0;
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
 
@@ -21,33 +26,33 @@ class SimpleBankAccountTest {
 
     @Test
     void testInitialBalance() {
-        assertEquals(0, bankAccount.getBalance());
+        assertEquals(INITIAL_BALANCE, bankAccount.getBalance());
     }
 
     @Test
     void testDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        assertEquals(100, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.getId(), DEFAULT_DEPOSIT_AMOUNT);
+        assertEquals(DEFAULT_DEPOSIT_AMOUNT, bankAccount.getBalance());
     }
 
     @Test
     void testWrongDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.deposit(2, 50);
-        assertEquals(100, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.getId(), DEFAULT_DEPOSIT_AMOUNT);
+        bankAccount.deposit(2, NEW_DEPOSIT_AMOUNT);
+        assertEquals(DEFAULT_DEPOSIT_AMOUNT, bankAccount.getBalance());
     }
 
     @Test
     void testWithdraw() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.withdraw(accountHolder.getId(), 70);
-        assertEquals(30, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.getId(), DEFAULT_DEPOSIT_AMOUNT);
+        bankAccount.withdraw(accountHolder.getId(), DEFAULT_WITHDRAW_AMOUNT);
+        assertEquals(EXPECTED_AMOUNT, bankAccount.getBalance());
     }
 
     @Test
     void testWrongWithdraw() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.withdraw(2, 70);
-        assertEquals(100, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.getId(), DEFAULT_DEPOSIT_AMOUNT);
+        bankAccount.withdraw(2, DEFAULT_WITHDRAW_AMOUNT);
+        assertEquals(DEFAULT_DEPOSIT_AMOUNT, bankAccount.getBalance());
     }
 }
