@@ -8,6 +8,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void setPin(int pin) {
+        if (pin < 1000 || pin > 9999) {
+            throw new IllegalStateException();
+        }
         this.pin = pin;
         pinSet = true;
     }
