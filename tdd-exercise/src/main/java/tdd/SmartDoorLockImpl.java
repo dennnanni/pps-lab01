@@ -18,7 +18,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void unlock(String pin) {
-        if (this.pin.equals(pin)) {
+        if (!this.isBlocked() && this.pin.equals(pin)) {
             this.locked = false;
             this.failedAttempts = 0;
         } else {
