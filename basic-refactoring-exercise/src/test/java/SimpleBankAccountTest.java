@@ -15,6 +15,7 @@ class SimpleBankAccountTest {
     public static final int NEW_DEPOSIT_AMOUNT = 50;
     public static final int EXPECTED_AMOUNT = 30;
     public static final int INITIAL_BALANCE = 0;
+    public static final int WITHDRAW_FEE = 1;
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
 
@@ -46,7 +47,7 @@ class SimpleBankAccountTest {
     void testWithdraw() {
         bankAccount.deposit(accountHolder.getId(), DEFAULT_DEPOSIT_AMOUNT);
         bankAccount.withdraw(accountHolder.getId(), DEFAULT_WITHDRAW_AMOUNT);
-        assertEquals(EXPECTED_AMOUNT, bankAccount.getBalance());
+        assertEquals(EXPECTED_AMOUNT - WITHDRAW_FEE, bankAccount.getBalance());
     }
 
     @Test
