@@ -3,7 +3,8 @@ package tdd;
 public class SmartDoorLockImpl implements SmartDoorLock {
 
     private boolean locked = false;
-    private int pin = -1;
+    private boolean pinSet = false;
+    private int pin;
 
     @Override
     public void setPin(int pin) {
@@ -17,7 +18,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void lock() {
-        if (this.pin == -1) {
+        if (!pinSet) {
             throw new IllegalStateException();
         }
 
