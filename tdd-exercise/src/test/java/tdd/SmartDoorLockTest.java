@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SmartDoorLockTest {
 
     public static final String PIN = "1234";
+    public static final String WRONG_PIN = "0000";
     private SmartDoorLock doorLock;
 
     @BeforeEach
@@ -26,13 +27,6 @@ public class SmartDoorLockTest {
     }
 
     @Test
-    public void setPinAndTryToLock() {
-        this.doorLock.setPin(PIN);
-        this.doorLock.lock();
-        assertTrue(this.doorLock.isLocked());
-    }
-
-    @Test
     public void setWrongPin() {
         assertAll(
                 () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin("10000")),
@@ -42,12 +36,47 @@ public class SmartDoorLockTest {
         );
     }
 
-    @Test
-    public void unlockWithCorrectPin() {
+    private void setPinAndLock() {
         this.doorLock.setPin(PIN);
         this.doorLock.lock();
+    }
+
+    @Test
+    public void setPinAndTryToLock() {
+        setPinAndLock();
+        assertTrue(this.doorLock.isLocked());
+    }
+
+    @Test
+    public void unlockWithCorrectPin() {
+        setPinAndLock();
         this.doorLock.unlock(PIN);
         assertFalse(this.doorLock.isLocked());
+    }
+
+    @Test
+    public void tryUnlockWithWrongPin() {
+        setPinAndLock();
+        this.doorLock.unlock(WRONG_PIN);
+        assertTrue(this.doorLock.isLocked());
+    }
+
+    @Test
+    public void checkFailedAttemptsCounterValue() {
+        setPinAndLock();
+        this.doorLock.unlock(WRONG_PIN);
+        assertEquals(1, this.doorLock.getFailedAttempts());
+    }
+
+    @Test
+    public void checkResetFailedAttemptsAfterSuccessfulUnlock() {
+        setPinAndLock();
+        this.doorLock.unlock(WRONG_PIN);
+        this.doorLock.unlock(PIN);
+        assertAll(
+                () -> assertEquals(0, this.doorLock.getFailedAttempts()),
+                () -> assertFalse(this.doorLock.isLocked())
+        );
     }
 
 }

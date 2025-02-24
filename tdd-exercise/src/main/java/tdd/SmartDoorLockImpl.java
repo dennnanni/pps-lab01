@@ -5,6 +5,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     public static final int PIN_LENGTH = 4;
     private boolean locked = false;
     private String pin;
+    private int failedAttempts;
 
     @Override
     public void setPin(String pin) {
@@ -18,6 +19,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     public void unlock(String pin) {
         if (this.pin.equals(pin)) {
             this.locked = false;
+            this.failedAttempts = 0;
+        } else {
+            this.failedAttempts += 1;
         }
     }
 
@@ -47,7 +51,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public int getFailedAttempts() {
-        return 0;
+        return this.failedAttempts;
     }
 
     @Override
