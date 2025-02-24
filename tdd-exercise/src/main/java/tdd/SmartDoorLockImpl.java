@@ -2,31 +2,28 @@ package tdd;
 
 public class SmartDoorLockImpl implements SmartDoorLock {
 
-    public static final int MIN_PIN_VALUE = 1000;
-    public static final int MAX_PIN_VALUE = 9999;
+    public static final int PIN_LENGTH = 4;
     private boolean locked = false;
-    private int pin;
-
-    private boolean isPinValid() {
-        return pin >= MIN_PIN_VALUE && pin <= MAX_PIN_VALUE;
-    }
+    private String pin;
 
     @Override
-    public void setPin(int pin) {
-        if (!isPinValid()) {
+    public void setPin(String pin) {
+        if (pin.length() != PIN_LENGTH) {
             throw new IllegalStateException();
         }
         this.pin = pin;
     }
 
     @Override
-    public void unlock(int pin) {
-
+    public void unlock(String pin) {
+        if (this.pin.equals(pin)) {
+            this.locked = false;
+        }
     }
 
     @Override
     public void lock() {
-        if (!isPinValid()) {
+        if (this.pin == null) {
             throw new IllegalStateException();
         }
 

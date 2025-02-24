@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartDoorLockTest {
 
-    public static final int PIN = 0000;
+    public static final String PIN = "1234";
     private SmartDoorLock doorLock;
 
     @BeforeEach
@@ -35,11 +35,19 @@ public class SmartDoorLockTest {
     @Test
     public void setWrongPin() {
         assertAll(
-                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin(10000)),
-                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin(999)),
-                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin(123)),
-                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin(10))
+                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin("10000")),
+                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin("999")),
+                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin("123")),
+                () -> assertThrows(IllegalStateException.class, () -> this.doorLock.setPin("10"))
         );
+    }
+
+    @Test
+    public void unlockWithCorrectPin() {
+        this.doorLock.setPin(PIN);
+        this.doorLock.lock();
+        this.doorLock.unlock(PIN);
+        assertFalse(this.doorLock.isLocked());
     }
 
 }
