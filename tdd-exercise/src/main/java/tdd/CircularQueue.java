@@ -27,12 +27,12 @@ public interface CircularQueue {
      *
      * @param value the value to be added.
      */
-    void add(int value);
+    void enqueue(int value);
 
     /**
      * Removes element from the head of the queue.
      *
      * @return the removed value.
      */
-    int pop();
+    int dequeue();
 }

@@ -12,7 +12,7 @@ public class CircularQueueImpl implements CircularQueue {
     }
 
     @Override
-    public void add(int value) {
+    public void enqueue(int value) {
         if (index == 10) {
             index = 0;
         }
@@ -20,7 +20,7 @@ public class CircularQueueImpl implements CircularQueue {
     }
 
     @Override
-    public int pop() {
+    public int dequeue() {
         return queue[startIndex++];
     }
 }

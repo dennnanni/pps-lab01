@@ -25,31 +25,31 @@ public class CircularListTest {
 
     @Test
     public void addElement() {
-        queue.add(DEFAULT_ELEMENT);
+        queue.enqueue(DEFAULT_ELEMENT);
         assertFalse(queue.isEmpty());
     }
 
     @Test
     public void checkCircularity() {
         for (int i = 0; i < 10; i++) {
-            queue.add(i);
+            queue.enqueue(i);
         }
-        assertDoesNotThrow(() -> queue.add(DEFAULT_ELEMENT));
+        assertDoesNotThrow(() -> queue.enqueue(DEFAULT_ELEMENT));
     }
 
     @Test
     public void removeElement() {
-        queue.add(DEFAULT_ELEMENT);
-        queue.pop();
+        queue.enqueue(DEFAULT_ELEMENT);
+        queue.dequeue();
         assertTrue(queue.isEmpty());
     }
 
     @Test
     public void checkPopWithMultipleValuesEnqueued() {
         for (int i = 0; i < 5; i++) {
-            queue.add(i);
+            queue.enqueue(i);
         }
-        assertEquals(0, queue.pop());
+        assertEquals(0, queue.dequeue());
     }
 
 }
