@@ -14,6 +14,15 @@ public class MinMaxStackImpl implements MinMaxStack {
         }
     }
 
+    private void computeMax() {
+        max = Integer.MIN_VALUE;
+        for (int i = 0; i < index; i++) {
+            if (stack[i] > max) {
+                max = stack[i];
+            }
+        }
+    }
+
     @Override
     public int pop() {
         if (index == 0) {
@@ -21,12 +30,7 @@ public class MinMaxStackImpl implements MinMaxStack {
         }
         int returnValue = stack[--index];
         if (returnValue == max) {
-            max = peek();
-            for (int i = 0; i < index; i++) {
-                if (stack[i] > max) {
-                    max = stack[i];
-                }
-            }
+            computeMax();
         }
         return returnValue;
     }
@@ -46,6 +50,9 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMax() {
+        if (index == 0) {
+            throw new IllegalStateException();
+        }
         return max;
     }
 

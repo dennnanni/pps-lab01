@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class MinMaxStackImplTest {
 
     public static final int DEFAULT_STACK_VALUE = 1;
+    public static final int MAX_VALUE = 5;
+    public static final int[] VALUES = {3, 1, 2, 4, 2, 5};
     MinMaxStack stack;
 
     @BeforeEach
@@ -63,26 +65,31 @@ class MinMaxStackImplTest {
     }
 
     @Test
-    public void getMax() {
-        int maxValue = 5;
-        for (int i = 0; i <= maxValue; i++) {
-            stack.push(i);
+    public void getMaxFromEmptyStack() {
+        assertThrows(IllegalStateException.class, () -> stack.getMax());
+    }
+
+    private void fill() {
+        for (int value : VALUES) {
+            stack.push(value);
         }
-        assertEquals(maxValue, stack.getMax());
+    }
+
+    @Test
+    public void getMax() {
+        fill();
+        assertEquals(MAX_VALUE, stack.getMax());
     }
 
     @Test
     public void getMaxAfterMaxIsPopped() {
-        int maxValue = 5;
         int secondMaxValue = 4;
-        for (int i = 0; i <= maxValue; i++) {
-            stack.push(i);
-        }
+        fill();
         int firstMax = stack.getMax();
         stack.pop();
         int secondMax = stack.getMax();
         assertAll(
-                () -> assertEquals(maxValue, firstMax),
+                () -> assertEquals(MAX_VALUE, firstMax),
                 () -> assertEquals(secondMaxValue, secondMax)
         );
     }
