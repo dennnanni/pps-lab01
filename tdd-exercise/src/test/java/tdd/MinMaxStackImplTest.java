@@ -1,14 +1,21 @@
 package tdd;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MinMaxStackImplTest {
 
+    MinMaxStack stack;
+
+    @BeforeEach
+    public void create() {
+        stack = new MinMaxStackImpl();
+    }
+
     @Test
     public void isStackInitiallyEmpty() {
-        MinMaxStack stack = new MinMaxStackImpl();
         assertAll(
                 () -> assertTrue(stack.isEmpty()),
                 () -> assertEquals(0, stack.size())
@@ -17,12 +24,12 @@ class MinMaxStackImplTest {
 
     @Test
     public void pushValue() {
-        MinMaxStack stack = new MinMaxStackImpl();
         stack.push(0);
         assertAll(
                 () -> assertFalse(stack.isEmpty()),
                 () -> assertEquals(1, stack.size())
         );
     }
+
 
 }
