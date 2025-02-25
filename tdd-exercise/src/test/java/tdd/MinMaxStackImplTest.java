@@ -10,7 +10,9 @@ class MinMaxStackImplTest {
     public static final int DEFAULT_STACK_VALUE = 1;
     public static final int MAX_VALUE = 5;
     public static final int MIN_VALUE = 1;
-    public static final int[] VALUES = {3, 1, 2, 4, 2, 5};
+    public static final int[] VALUES_END_WITH_MAX = {3, 1, 2, 4, 2, 5};
+    public static final int[] VALUES_END_WITH_MIN = {2, 4, 6, 3, 5, 1};
+    public static final int[] VALUES = {5, 2, 1, 4, 2, 3, 4};
     MinMaxStack stack;
 
     @BeforeEach
@@ -70,22 +72,22 @@ class MinMaxStackImplTest {
         assertThrows(IllegalStateException.class, () -> stack.getMax());
     }
 
-    private void fill() {
-        for (int value : VALUES) {
+    private void fill(int[] values) {
+        for (int value : values) {
             stack.push(value);
         }
     }
 
     @Test
     public void getMax() {
-        fill();
+        fill(VALUES);
         assertEquals(MAX_VALUE, stack.getMax());
     }
 
     @Test
     public void getMaxAfterMaxIsPopped() {
         int secondMaxValue = 4;
-        fill();
+        fill(VALUES_END_WITH_MAX);
         int firstMax = stack.getMax();
         stack.pop();
         int secondMax = stack.getMax();
@@ -102,17 +104,14 @@ class MinMaxStackImplTest {
 
     @Test
     public void getMin() {
-        fill();
+        fill(VALUES);
         assertEquals(MIN_VALUE, stack.getMin());
     }
 
     @Test
     public void getMinAfterMinIsPopped() {
         int secondMinValue = 2;
-        int[] values = {2, 4, 6, 3, 5, 1};
-        for (int value : values) {
-            stack.push(value);
-        }
+        fill(VALUES_END_WITH_MIN);
         int firstMin = stack.getMin();
         stack.pop();
         int secondMin = stack.getMin();
