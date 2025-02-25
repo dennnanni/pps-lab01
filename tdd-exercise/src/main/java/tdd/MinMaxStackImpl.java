@@ -38,7 +38,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int pop() {
-        if (index == 0) {
+        if (isEmpty()) {
             throw new IllegalStateException();
         }
         int returnValue = stack[--index];
@@ -61,7 +61,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMin() {
-        if (index == 0) {
+        if (isEmpty()) {
             throw new IllegalStateException();
         }
         return min;
@@ -69,7 +69,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMax() {
-        if (index == 0) {
+        if (isEmpty()) {
             throw new IllegalStateException();
         }
         return max;
