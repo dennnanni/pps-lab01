@@ -4,10 +4,14 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     private int[] stack = new int[100];
     private int index;
+    private int max;
 
     @Override
     public void push(int value) {
         stack[index++] = value;
+        if (value > max) {
+            max = value;
+        }
     }
 
     @Override
@@ -30,7 +34,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMax() {
-        return 0;
+        return max;
     }
 
     @Override
