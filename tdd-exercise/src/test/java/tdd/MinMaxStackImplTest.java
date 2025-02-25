@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MinMaxStackImplTest {
 
+    public static final int DEFAULT_STACK_VALUE = 1;
     MinMaxStack stack;
 
     @BeforeEach
@@ -33,16 +34,26 @@ class MinMaxStackImplTest {
 
     @Test
     public void popValue() {
-        stack.push(0);
+        stack.push(DEFAULT_STACK_VALUE);
         int value = stack.pop();
         assertAll(
                 () -> assertTrue(stack.isEmpty()),
-                () -> assertEquals(0, value)
+                () -> assertEquals(DEFAULT_STACK_VALUE, value)
         );
     }
 
     @Test
     public void popValueFromEmptyStack() {
         assertThrows(IllegalStateException.class, () -> stack.pop());
+    }
+
+    @Test
+    public void peekValue() {
+        stack.push(DEFAULT_STACK_VALUE);
+        int value = stack.peek();
+        assertAll(
+                () -> assertFalse(stack.isEmpty()),
+                () -> assertEquals(DEFAULT_STACK_VALUE, value)
+        );
     }
 }
