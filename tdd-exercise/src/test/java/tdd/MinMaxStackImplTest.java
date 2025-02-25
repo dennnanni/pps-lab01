@@ -3,6 +3,8 @@ package tdd;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MinMaxStackImplTest {
@@ -35,6 +37,14 @@ class MinMaxStackImplTest {
                 () -> assertFalse(stack.isEmpty()),
                 () -> assertEquals(1, stack.size())
         );
+    }
+
+    @Test
+    public void tryPushingWhenFull() {
+        for (int i = 0; i < 100; i++) {
+            stack.push(DEFAULT_STACK_VALUE);
+        }
+        assertThrows(IllegalStateException.class, () -> stack.push(DEFAULT_STACK_VALUE));
     }
 
     @Test

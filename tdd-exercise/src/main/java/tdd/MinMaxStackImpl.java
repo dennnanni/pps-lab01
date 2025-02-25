@@ -9,6 +9,9 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public void push(int value) {
+        if (index == 100) {
+            throw new IllegalStateException();
+        }
         stack[index++] = value;
         if (value > max) {
             max = value;
