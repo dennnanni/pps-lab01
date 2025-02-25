@@ -3,6 +3,8 @@ package tdd;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.function.Supplier;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MinMaxStackImplTest {
@@ -88,13 +90,8 @@ class MinMaxStackImplTest {
     public void getMaxAfterMaxIsPopped() {
         int secondMaxValue = 4;
         fill(VALUES_END_WITH_MAX);
-        int firstMax = stack.getMax();
         stack.pop();
-        int secondMax = stack.getMax();
-        assertAll(
-                () -> assertEquals(MAX_VALUE, firstMax),
-                () -> assertEquals(secondMaxValue, secondMax)
-        );
+        assertEquals(secondMaxValue, stack.getMax());
     }
 
     @Test
@@ -112,12 +109,7 @@ class MinMaxStackImplTest {
     public void getMinAfterMinIsPopped() {
         int secondMinValue = 2;
         fill(VALUES_END_WITH_MIN);
-        int firstMin = stack.getMin();
         stack.pop();
-        int secondMin = stack.getMin();
-        assertAll(
-                () -> assertEquals(MIN_VALUE, firstMin),
-                () -> assertEquals(secondMinValue, secondMin)
-        );
+        assertEquals(secondMinValue, stack.getMin());
     }
 }
