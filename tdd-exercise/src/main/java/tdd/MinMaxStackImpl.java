@@ -2,10 +2,12 @@ package tdd;
 
 public class MinMaxStackImpl implements MinMaxStack {
 
+    private int[] stack = new int[100];
+    private int index;
 
     @Override
     public void push(int value) {
-
+        stack[index++] = value;
     }
 
     @Override
@@ -30,11 +32,11 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return index == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return index;
     }
 }

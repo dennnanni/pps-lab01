@@ -15,4 +15,14 @@ class MinMaxStackImplTest {
         );
     }
 
+    @Test
+    public void pushValue() {
+        MinMaxStack stack = new MinMaxStackImpl();
+        stack.push(0);
+        assertAll(
+                () -> assertFalse(stack.isEmpty()),
+                () -> assertEquals(1, stack.size())
+        );
+    }
+
 }
