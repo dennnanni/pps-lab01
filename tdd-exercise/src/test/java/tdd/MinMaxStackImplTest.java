@@ -40,4 +40,9 @@ class MinMaxStackImplTest {
                 () -> assertEquals(0, value)
         );
     }
+
+    @Test
+    public void popValueFromEmptyStack() {
+        assertThrows(IllegalStateException.class, () -> stack.pop());
+    }
 }
