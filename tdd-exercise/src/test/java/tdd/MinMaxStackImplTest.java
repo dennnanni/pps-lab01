@@ -58,6 +58,11 @@ class MinMaxStackImplTest {
     }
 
     @Test
+    public void peekValueFromEmptyStack() {
+        assertThrows(IllegalStateException.class, () -> stack.peek());
+    }
+
+    @Test
     public void getMax() {
         int maxValue = 5;
         for (int i = 0; i <= maxValue; i++) {

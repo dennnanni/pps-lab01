@@ -33,6 +33,9 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int peek() {
+        if (index == 0) {
+            throw new IllegalStateException();
+        }
         return stack[index - 1];
     }
 
