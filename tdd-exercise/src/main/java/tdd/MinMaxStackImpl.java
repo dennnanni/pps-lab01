@@ -2,14 +2,15 @@ package tdd;
 
 public class MinMaxStackImpl implements MinMaxStack {
 
-    private int[] stack = new int[100];
+    private static final int STACK_SIZE = 100;
+    private int[] stack = new int[STACK_SIZE];
     private int index;
     private int max = Integer.MIN_VALUE;
     private int min = Integer.MAX_VALUE;
 
     @Override
     public void push(int value) {
-        if (index == 100) {
+        if (index == STACK_SIZE) {
             throw new IllegalStateException();
         }
         stack[index++] = value;
