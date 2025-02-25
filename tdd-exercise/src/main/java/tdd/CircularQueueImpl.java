@@ -17,4 +17,9 @@ public class CircularQueueImpl implements CircularQueue {
         }
         queue[index++] = value;
     }
+
+    @Override
+    public int pop() {
+        return queue[--index];
+    }
 }

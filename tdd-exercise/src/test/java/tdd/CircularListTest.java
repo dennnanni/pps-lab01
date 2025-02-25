@@ -36,4 +36,11 @@ public class CircularListTest {
         }
         assertDoesNotThrow(() -> queue.add(DEFAULT_ELEMENT));
     }
+
+    @Test
+    public void removeElement() {
+        queue.add(DEFAULT_ELEMENT);
+        queue.pop();
+        assertTrue(queue.isEmpty());
+    }
 }
