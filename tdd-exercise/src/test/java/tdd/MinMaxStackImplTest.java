@@ -9,6 +9,7 @@ class MinMaxStackImplTest {
 
     public static final int DEFAULT_STACK_VALUE = 1;
     public static final int MAX_VALUE = 5;
+    public static final int MIN_VALUE = 1;
     public static final int[] VALUES = {3, 1, 2, 4, 2, 5};
     MinMaxStack stack;
 
@@ -97,5 +98,11 @@ class MinMaxStackImplTest {
     @Test
     public void getMinFromEmptyStack() {
         assertThrows(IllegalStateException.class, () -> stack.getMin());
+    }
+
+    @Test
+    public void getMin() {
+        fill();
+        assertEquals(MIN_VALUE, stack.getMin());
     }
 }

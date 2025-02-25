@@ -5,12 +5,16 @@ public class MinMaxStackImpl implements MinMaxStack {
     private int[] stack = new int[100];
     private int index;
     private int max;
+    private int min = Integer.MAX_VALUE;
 
     @Override
     public void push(int value) {
         stack[index++] = value;
         if (value > max) {
             max = value;
+        }
+        if (value < min) {
+            min = value;
         }
     }
 
@@ -48,7 +52,7 @@ public class MinMaxStackImpl implements MinMaxStack {
         if (index == 0) {
             throw new IllegalStateException();
         }
-        return 0;
+        return min;
     }
 
     @Override
