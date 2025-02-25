@@ -24,4 +24,6 @@ public class CircularListTest {
         queue.add(DEFAULT_ELEMENT);
         assertFalse(queue.isEmpty());
     }
+
+
 }

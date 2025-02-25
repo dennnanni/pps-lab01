@@ -72,7 +72,7 @@ class MinMaxStackImplTest {
         assertThrows(IllegalStateException.class, () -> stack.getMax());
     }
 
-    private void fill(int[] values) {
+    private void fillWithValues(int[] values) {
         for (int value : values) {
             stack.push(value);
         }
@@ -80,14 +80,14 @@ class MinMaxStackImplTest {
 
     @Test
     public void getMax() {
-        fill(VALUES);
+        fillWithValues(VALUES);
         assertEquals(MAX_VALUE, stack.getMax());
     }
 
     @Test
     public void getMaxAfterMaxIsPopped() {
         int secondMaxValue = 4;
-        fill(VALUES_END_WITH_MAX);
+        fillWithValues(VALUES_END_WITH_MAX);
         stack.pop();
         assertEquals(secondMaxValue, stack.getMax());
     }
@@ -99,14 +99,14 @@ class MinMaxStackImplTest {
 
     @Test
     public void getMin() {
-        fill(VALUES);
+        fillWithValues(VALUES);
         assertEquals(MIN_VALUE, stack.getMin());
     }
 
     @Test
     public void getMinAfterMinIsPopped() {
         int secondMinValue = 2;
-        fill(VALUES_END_WITH_MIN);
+        fillWithValues(VALUES_END_WITH_MIN);
         stack.pop();
         assertEquals(secondMinValue, stack.getMin());
     }
