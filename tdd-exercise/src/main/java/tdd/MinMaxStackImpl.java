@@ -4,7 +4,7 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     private int[] stack = new int[100];
     private int index;
-    private int max;
+    private int max = Integer.MIN_VALUE;
     private int min = Integer.MAX_VALUE;
 
     @Override
