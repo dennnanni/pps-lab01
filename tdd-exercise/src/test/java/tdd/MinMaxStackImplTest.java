@@ -105,4 +105,20 @@ class MinMaxStackImplTest {
         fill();
         assertEquals(MIN_VALUE, stack.getMin());
     }
+
+    @Test
+    public void getMinAfterMinIsPopped() {
+        int secondMinValue = 2;
+        int[] values = {2, 4, 6, 3, 5, 1};
+        for (int value : values) {
+            stack.push(value);
+        }
+        int firstMin = stack.getMin();
+        stack.pop();
+        int secondMin = stack.getMin();
+        assertAll(
+                () -> assertEquals(MIN_VALUE, firstMin),
+                () -> assertEquals(secondMinValue, secondMin)
+        );
+    }
 }

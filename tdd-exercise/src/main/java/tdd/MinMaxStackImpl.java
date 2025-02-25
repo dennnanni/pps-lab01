@@ -36,6 +36,14 @@ public class MinMaxStackImpl implements MinMaxStack {
         if (returnValue == max) {
             computeMax();
         }
+        if (returnValue == min) {
+            min = Integer.MAX_VALUE;
+            for (int i = 0; i < index; i++) {
+                if (stack[i] < min) {
+                    min = stack[i];
+                }
+            }
+        }
         return returnValue;
     }
 
