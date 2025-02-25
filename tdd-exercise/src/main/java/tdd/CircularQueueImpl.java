@@ -3,6 +3,7 @@ package tdd;
 public class CircularQueueImpl implements CircularQueue {
 
     private final int[] queue = new int[10];
+    private int startIndex;
     private int index = 0;
 
     @Override
@@ -20,6 +21,6 @@ public class CircularQueueImpl implements CircularQueue {
 
     @Override
     public int pop() {
-        return queue[--index];
+        return queue[startIndex++];
     }
 }

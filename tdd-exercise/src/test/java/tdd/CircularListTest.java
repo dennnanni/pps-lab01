@@ -43,4 +43,13 @@ public class CircularListTest {
         queue.pop();
         assertTrue(queue.isEmpty());
     }
+
+    @Test
+    public void checkPopWithMultipleValuesEnqueued() {
+        for (int i = 0; i < 5; i++) {
+            queue.add(i);
+        }
+        assertEquals(0, queue.pop());
+    }
+
 }
