@@ -93,4 +93,9 @@ class MinMaxStackImplTest {
                 () -> assertEquals(secondMaxValue, secondMax)
         );
     }
+
+    @Test
+    public void getMinFromEmptyStack() {
+        assertThrows(IllegalStateException.class, () -> stack.getMin());
+    }
 }
