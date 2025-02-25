@@ -19,7 +19,16 @@ public class MinMaxStackImpl implements MinMaxStack {
         if (index == 0) {
             throw new IllegalStateException();
         }
-        return stack[--index];
+        int returnValue = stack[--index];
+        if (returnValue == max) {
+            max = peek();
+            for (int i = 0; i < index; i++) {
+                if (stack[i] > max) {
+                    max = stack[i];
+                }
+            }
+        }
+        return returnValue;
     }
 
     @Override
