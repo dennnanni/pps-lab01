@@ -12,6 +12,9 @@ public class CircularQueueImpl implements CircularQueue {
 
     @Override
     public void add(int value) {
+        if (index == 10) {
+            index = 0;
+        }
         queue[index++] = value;
     }
 }
