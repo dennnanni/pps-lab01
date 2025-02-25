@@ -31,5 +31,13 @@ class MinMaxStackImplTest {
         );
     }
 
-
+    @Test
+    public void popValue() {
+        stack.push(0);
+        int value = stack.pop();
+        assertAll(
+                () -> assertTrue(stack.isEmpty()),
+                () -> assertEquals(0, value)
+        );
+    }
 }
