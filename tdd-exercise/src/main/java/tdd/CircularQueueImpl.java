@@ -2,7 +2,7 @@ package tdd;
 
 public class CircularQueueImpl implements CircularQueue {
 
-    private static final int SIZE = 10;
+    public static final int SIZE = 10;
     private final int[] queue = new int[SIZE];
     private int startIndex;
     private int index;

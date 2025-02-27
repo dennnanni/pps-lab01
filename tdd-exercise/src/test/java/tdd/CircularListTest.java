@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CircularListTest {
 
+    private static final int BIGGER_THAN_SIZE = 11;
+    private static final int LOWER_THAN_SIZE = 5;
     private static final int DEFAULT_ELEMENT = 1;
     CircularQueue queue;
 
@@ -31,7 +33,7 @@ public class CircularListTest {
 
     @Test
     public void checkCircularity() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < CircularQueueImpl.SIZE; i++) {
             queue.enqueue(i);
         }
         assertDoesNotThrow(() -> queue.enqueue(DEFAULT_ELEMENT));
@@ -46,7 +48,7 @@ public class CircularListTest {
 
     @Test
     public void checkDequeueWithMultipleValuesEnqueued() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < LOWER_THAN_SIZE; i++) {
             queue.enqueue(i);
         }
         assertEquals(0, queue.dequeue());
@@ -54,7 +56,7 @@ public class CircularListTest {
 
     @Test
     public void checkRemoveOldestOne() {
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < BIGGER_THAN_SIZE; i++) {
             queue.enqueue(i);
         }
         assertEquals(1, queue.dequeue());
@@ -69,10 +71,10 @@ public class CircularListTest {
 
     @Test
     public void isSizeTheMaxElementsCount() {
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < BIGGER_THAN_SIZE; i++) {
             queue.enqueue(i);
         }
 
-        assertEquals(10, queue.getElementsCount());
+        assertEquals(CircularQueueImpl.SIZE, queue.getElementsCount());
     }
 }
