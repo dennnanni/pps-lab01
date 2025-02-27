@@ -25,14 +25,11 @@ public class CircularQueueImpl implements CircularQueue {
     @Override
     public void enqueue(int value) {
         index = restartIfAtEnd(index);
-        int previousIndex = index;
         queue[index++] = value;
-        elementsCount++;
-        if (elementsCount != 0 && previousIndex == startIndex) {
+        if (isFull()) {
             startIndex = restartIfAtEnd(startIndex + 1);
-        }
-        if (elementsCount > SIZE) {
-            elementsCount = SIZE;
+        } else {
+            elementsCount++;
         }
     }
 
