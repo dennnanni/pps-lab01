@@ -33,6 +33,7 @@ public interface CircularQueue {
      * Removes element from the head of the queue.
      *
      * @return the removed value.
+     * @throws IllegalStateException if the queue is empty.
      */
     int dequeue();
 }

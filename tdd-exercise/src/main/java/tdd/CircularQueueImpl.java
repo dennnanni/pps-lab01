@@ -30,6 +30,9 @@ public class CircularQueueImpl implements CircularQueue {
 
     @Override
     public int dequeue() {
+        if (isEmpty()) {
+            throw new IllegalStateException();
+        }
         startIndex = restartIfAtEnd(startIndex);
         elementsCount--;
         return queue[startIndex++];

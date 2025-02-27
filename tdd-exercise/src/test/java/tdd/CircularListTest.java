@@ -59,4 +59,11 @@ public class CircularListTest {
         }
         assertEquals(1, queue.dequeue());
     }
+
+    @Test
+    public void cannotRemoveMoreElements() {
+        queue.enqueue(DEFAULT_ELEMENT);
+        queue.dequeue();
+        assertThrows(IllegalStateException.class, () -> queue.dequeue());
+    }
 }
