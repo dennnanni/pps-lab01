@@ -19,7 +19,7 @@ public class CircularQueueImpl implements CircularQueue {
     }
 
     private int restartIfAtEnd(int index) {
-        return index == SIZE ? 0 : index;
+        return index >= SIZE ? 0 : index;
     }
 
     @Override
