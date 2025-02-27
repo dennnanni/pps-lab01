@@ -2,7 +2,8 @@ package tdd;
 
 public class CircularQueueImpl implements CircularQueue {
 
-    private final int[] queue = new int[10];
+    private static final int SIZE = 10;
+    private final int[] queue = new int[SIZE];
     private int startIndex;
     private int index;
     private int elementsCount;
@@ -12,24 +13,24 @@ public class CircularQueueImpl implements CircularQueue {
         return elementsCount == 0;
     }
 
-    private int restart(int index) {
-        return index == 10 ? 0 : index;
+    private int restartIfAtEnd(int index) {
+        return index == SIZE ? 0 : index;
     }
 
     @Override
     public void enqueue(int value) {
-        index = restart(index);
+        index = restartIfAtEnd(index);
         int previousIndex = index;
         queue[index++] = value;
         elementsCount++;
         if (elementsCount != 0 && previousIndex == startIndex) {
-            startIndex = restart(startIndex + 1);
+            startIndex = restartIfAtEnd(startIndex + 1);
         }
     }
 
     @Override
     public int dequeue() {
-        startIndex = restart(startIndex);
+        startIndex = restartIfAtEnd(startIndex);
         elementsCount--;
         return queue[startIndex++];
     }

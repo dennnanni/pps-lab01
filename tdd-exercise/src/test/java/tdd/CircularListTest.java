@@ -38,14 +38,14 @@ public class CircularListTest {
     }
 
     @Test
-    public void removeElement() {
+    public void tryRemoveElement() {
         queue.enqueue(DEFAULT_ELEMENT);
         queue.dequeue();
         assertTrue(queue.isEmpty());
     }
 
     @Test
-    public void checkPopWithMultipleValuesEnqueued() {
+    public void checkDequeueWithMultipleValuesEnqueued() {
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
         }
