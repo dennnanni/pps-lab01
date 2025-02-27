@@ -52,4 +52,11 @@ public class CircularListTest {
         assertEquals(0, queue.dequeue());
     }
 
+    @Test
+    public void checkRemoveOldestOne() {
+        for (int i = 0; i < 11; i++) {
+            queue.enqueue(i);
+        }
+        assertEquals(1, queue.dequeue());
+    }
 }
