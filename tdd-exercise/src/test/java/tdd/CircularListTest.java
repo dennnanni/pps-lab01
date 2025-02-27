@@ -66,4 +66,13 @@ public class CircularListTest {
         queue.dequeue();
         assertThrows(IllegalStateException.class, () -> queue.dequeue());
     }
+
+    @Test
+    public void isSizeTheMaxElementsCount() {
+        for (int i = 0; i < 11; i++) {
+            queue.enqueue(i);
+        }
+
+        assertEquals(10, queue.getElementsCount());
+    }
 }

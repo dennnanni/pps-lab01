@@ -26,6 +26,9 @@ public class CircularQueueImpl implements CircularQueue {
         if (elementsCount != 0 && previousIndex == startIndex) {
             startIndex = restartIfAtEnd(startIndex + 1);
         }
+        if (elementsCount > SIZE) {
+            elementsCount = SIZE;
+        }
     }
 
     @Override
@@ -36,5 +39,10 @@ public class CircularQueueImpl implements CircularQueue {
         startIndex = restartIfAtEnd(startIndex);
         elementsCount--;
         return queue[startIndex++];
+    }
+
+    @Override
+    public int getElementsCount() {
+        return elementsCount;
     }
 }

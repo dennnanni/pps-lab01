@@ -36,4 +36,11 @@ public interface CircularQueue {
      * @throws IllegalStateException if the queue is empty.
      */
     int dequeue();
+
+    /**
+     * Returns the number of elements stored in the queue.
+     *
+     * @return elements count.
+     */
+    int getElementsCount();
 }
