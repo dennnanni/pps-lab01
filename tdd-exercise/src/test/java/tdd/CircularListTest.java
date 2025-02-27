@@ -31,11 +31,15 @@ public class CircularListTest {
         assertFalse(queue.isEmpty());
     }
 
-    @Test
-    public void checkCircularity() {
-        for (int i = 0; i < CircularQueueImpl.SIZE; i++) {
+    private void enqueueIncrementalValuesUpTo(int max) {
+        for (int i = 0; i < max; i++) {
             queue.enqueue(i);
         }
+    }
+
+    @Test
+    public void checkCircularity() {
+        enqueueIncrementalValuesUpTo(CircularQueueImpl.SIZE);
         assertDoesNotThrow(() -> queue.enqueue(DEFAULT_ELEMENT));
     }
 
@@ -48,17 +52,13 @@ public class CircularListTest {
 
     @Test
     public void checkDequeueWithMultipleValuesEnqueued() {
-        for (int i = 0; i < LOWER_THAN_SIZE; i++) {
-            queue.enqueue(i);
-        }
+        enqueueIncrementalValuesUpTo(LOWER_THAN_SIZE);
         assertEquals(0, queue.dequeue());
     }
 
     @Test
     public void checkRemoveOldestOne() {
-        for (int i = 0; i < BIGGER_THAN_SIZE; i++) {
-            queue.enqueue(i);
-        }
+        enqueueIncrementalValuesUpTo(BIGGER_THAN_SIZE);
         assertEquals(1, queue.dequeue());
     }
 
@@ -71,19 +71,13 @@ public class CircularListTest {
 
     @Test
     public void isSizeTheMaxElementsCount() {
-        for (int i = 0; i < BIGGER_THAN_SIZE; i++) {
-            queue.enqueue(i);
-        }
-
+        enqueueIncrementalValuesUpTo(BIGGER_THAN_SIZE);
         assertEquals(CircularQueueImpl.SIZE, queue.getElementsCount());
     }
 
     @Test
     public void checkIfQueueIsFull() {
-        for (int i = 0; i < BIGGER_THAN_SIZE; i++) {
-            queue.enqueue(i);
-        }
-
+        enqueueIncrementalValuesUpTo(BIGGER_THAN_SIZE);
         assertTrue(queue.isFull());
     }
 }
