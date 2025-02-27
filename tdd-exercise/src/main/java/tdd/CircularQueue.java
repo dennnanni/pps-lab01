@@ -23,6 +23,13 @@ public interface CircularQueue {
     boolean isEmpty();
 
     /**
+     * Return if the queue is full.
+     *
+     * @return true if the queue is full, false otherwise.
+     */
+    boolean isFull();
+
+    /**
      * Add new value at the end of the queue.
      *
      * @param value the value to be added.

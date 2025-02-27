@@ -13,6 +13,11 @@ public class CircularQueueImpl implements CircularQueue {
         return elementsCount == 0;
     }
 
+    @Override
+    public boolean isFull() {
+        return elementsCount == SIZE;
+    }
+
     private int restartIfAtEnd(int index) {
         return index == SIZE ? 0 : index;
     }

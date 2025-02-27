@@ -77,4 +77,13 @@ public class CircularListTest {
 
         assertEquals(CircularQueueImpl.SIZE, queue.getElementsCount());
     }
+
+    @Test
+    public void checkIfQueueIsFull() {
+        for (int i = 0; i < BIGGER_THAN_SIZE; i++) {
+            queue.enqueue(i);
+        }
+
+        assertTrue(queue.isFull());
+    }
 }
